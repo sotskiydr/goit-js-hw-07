@@ -14,11 +14,13 @@ const images = [
 ];
 
 const gallery = document.querySelector('#gallery');
-const pictureElem = images.reduce((acc,elem)=>{
- return acc += `<li><img src="${elem.url} alt="${elem.alt}" width="450px" height="300px"></li>`
-},'')
+const createEl = elements => {
+  return elements.map(({url,alt}) => {
+    return `<li><img src="${url}" alt="${alt}" width="450px" height="300px"></li>`
+  }).join('')
+}
 
-gallery.insertAdjacentHTML('afterbegin',pictureElem);
+gallery.insertAdjacentHTML('afterbegin',createEl(images));
 gallery.style.marginTop = '40px';
 gallery.style.display = 'flex';
 gallery.style.justifyContent = 'space-around';
